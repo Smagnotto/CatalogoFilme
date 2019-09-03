@@ -3,7 +3,7 @@ package br.com.saraiva.catalogo.pojo;
 /**
  * PojoFilme
  */
-public class PojoFilme {
+public class Filme {
 
     private String title;
 

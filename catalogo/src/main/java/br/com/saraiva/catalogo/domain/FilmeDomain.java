@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "filme")
-public class Filme {
+public class FilmeDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

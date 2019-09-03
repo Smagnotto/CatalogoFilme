@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.saraiva.catalogo.domain.Filme;
+import br.com.saraiva.catalogo.domain.FilmeDomain;
+import br.com.saraiva.catalogo.pojo.Filme;
 import br.com.saraiva.catalogo.service.FilmeService;
 
 /**
@@ -28,18 +29,18 @@ public class FilmeController {
     private FilmeService service;
 
     @GetMapping(path = "/")
-    public List<Filme> getAll() {
+    public List<FilmeDomain> getAll() {
         return service.getAll();
     }
 
     @GetMapping(path = "/{id}")
-    public Filme getById(@PathVariable long id) {
+    public FilmeDomain getById(@PathVariable long id) {
         return service.getById(id);
     }
 
     @PostMapping(path = "/")
-    public ResponseEntity<Filme> addNewFilme(@RequestBody PojoFilme pojoFilme) {
-        Filme filme = new Filme();
+    public ResponseEntity<FilmeDomain> addNewFilme(@RequestBody Filme pojoFilme) {
+        FilmeDomain filme = new FilmeDomain();
         filme.setTitle(pojoFilme.getTitle());
 
         filme = service.addNewFilme(filme);
@@ -48,8 +49,8 @@ public class FilmeController {
     } 
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<String> updateFilme(@PathVariable long id, @RequestBody PojoFilme pojoFilme) {
-        Filme filme = service.getById(id);
+    public ResponseEntity<String> updateFilme(@PathVariable long id, @RequestBody Filme pojoFilme) {
+        FilmeDomain filme = service.getById(id);
         if (filme == null)
             return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
         
@@ -61,7 +62,7 @@ public class FilmeController {
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteFilme(@PathVariable long id) {
-        Filme filme = service.getById(id);
+        FilmeDomain filme = service.getById(id);
         if (filme == null)
             return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
 
