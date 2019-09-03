@@ -27,4 +27,16 @@ public class FilmeService {
     public Filme getById(long id) {
         return repository.findById(id).orElse(null);
     }
+
+    public Filme addNewFilme(Filme filme) {
+        return repository.save(filme);
+    }
+
+    public void updateFilme (Filme filme) {
+        repository.save(filme);
+    }
+
+    public void deleteFilme(Filme filme) {
+        repository.delete(filme);
+    }
 }
