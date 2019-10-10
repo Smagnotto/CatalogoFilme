@@ -53,21 +53,21 @@ public class FilmeController {
     public ResponseEntity<String> updateFilme(@PathVariable long id, @RequestBody Filme pojoFilme) {
         FilmeDomain filme = service.getById(id);
         if (filme == null)
-            return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Filme não encontrado", HttpStatus.NOT_FOUND);
         
         filme.setTitle(pojoFilme.getTitle());
         service.updateFilme(filme);
 
-        return new ResponseEntity<>("Produto atualizado com sucesso", HttpStatus.OK);
+        return new ResponseEntity<>("Filme atualizado com sucesso", HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteFilme(@PathVariable long id) {
         FilmeDomain filme = service.getById(id);
         if (filme == null)
-            return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Filme não encontrado", HttpStatus.NOT_FOUND);
 
         service.deleteFilme(filme);
-        return new ResponseEntity<>("Produto deletado com sucesso", HttpStatus.OK);
+        return new ResponseEntity<>("Filme deletado com sucesso", HttpStatus.OK);
     }
 }
