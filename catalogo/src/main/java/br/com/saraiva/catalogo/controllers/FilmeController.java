@@ -28,9 +28,14 @@ public class FilmeController {
     @Autowired
     private FilmeService service;
 
-    @GetMapping(path = "/")
+    @GetMapping(path="/")
     public List<FilmeDomain> getAll() {
         return service.getAll();
+    }
+
+    @GetMapping(path = "/usuario/{usuario}")
+    public List<FilmeDomain> getAllByUser(@PathVariable String usuario) {
+        return service.getAllByUser(usuario);
     }
 
     @GetMapping(path = "/{id}")
@@ -42,6 +47,7 @@ public class FilmeController {
     public ResponseEntity<FilmeDomain> addNewFilme(@RequestBody Filme pojoFilme) {
         FilmeDomain filme = new FilmeDomain();
         filme.setTitle(pojoFilme.getTitle());
+        filme.setUsuario(pojoFilme.getUsuario());
 
         filme = service.addNewFilme(filme);
 
@@ -52,21 +58,23 @@ public class FilmeController {
     public ResponseEntity<String> updateFilme(@PathVariable long id, @RequestBody Filme pojoFilme) {
         FilmeDomain filme = service.getById(id);
         if (filme == null)
-            return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Filme não encontrado", HttpStatus.NOT_FOUND);
         
         filme.setTitle(pojoFilme.getTitle());
         service.updateFilme(filme);
+        filme.setUsuario(pojoFilme.getUsuario());
 
-        return new ResponseEntity<>("Produto atualizado com sucesso", HttpStatus.OK);
+
+        return new ResponseEntity<>("Filme atualizado com sucesso", HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteFilme(@PathVariable long id) {
         FilmeDomain filme = service.getById(id);
         if (filme == null)
-            return new ResponseEntity<>("Produto não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Filme não encontrado", HttpStatus.NOT_FOUND);
 
         service.deleteFilme(filme);
-        return new ResponseEntity<>("Produto deletado com sucesso", HttpStatus.OK);
+        return new ResponseEntity<>("Filme deletado com sucesso", HttpStatus.OK);
     }
 }

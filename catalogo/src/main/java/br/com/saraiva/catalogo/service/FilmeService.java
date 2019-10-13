@@ -24,6 +24,12 @@ public class FilmeService {
         return filmes;
     }
 
+    public List<FilmeDomain> getAllByUser(String usuario) {
+        List<FilmeDomain> filmes = new ArrayList<>();
+        repository.findAllByusuario(usuario).forEach(filme -> filmes.add(filme));
+        return filmes;
+    }
+
     public FilmeDomain getById(long id) {
         return repository.findById(id).orElse(null);
     }

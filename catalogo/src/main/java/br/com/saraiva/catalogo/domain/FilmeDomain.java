@@ -14,8 +14,11 @@ public class FilmeDomain {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name="title", nullable = false, length = 30, unique = true)
+    @Column(name="title", nullable = false, length = 30)
     private String title;
+
+    @Column(name="usuario", nullable = false, length = 50)
+    private String usuario;
 
     public long getId() {
         return id;
@@ -31,5 +34,13 @@ public class FilmeDomain {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getUsuario(String usuario) {
+        return this.usuario;
     }
 }

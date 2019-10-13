@@ -8,5 +8,5 @@ import br.com.saraiva.catalogo.domain.FilmeDomain;
  * FilmeRepository
  */
 public interface FilmeRepository extends CrudRepository<FilmeDomain, Long> {
-    
+    Iterable<FilmeDomain> findAllByusuario(String usuario);
 }
