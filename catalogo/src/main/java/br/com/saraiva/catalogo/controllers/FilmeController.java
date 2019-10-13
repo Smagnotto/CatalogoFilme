@@ -38,6 +38,7 @@ public class FilmeController {
         return service.getAllByUser(usuario);
     }
 
+
     @GetMapping(path = "/{id}")
     public FilmeDomain getById(@PathVariable long id) {
         return service.getById(id);
@@ -48,6 +49,7 @@ public class FilmeController {
         //TODO Adicionar chave de usuario no objeto filme para relacionamento
         FilmeDomain filme = new FilmeDomain();
         filme.setTitle(pojoFilme.getTitle());
+        filme.setGender(pojoFilme.getGender());
         filme.setUsuario(pojoFilme.getUsuario());
 
         filme = service.addNewFilme(filme);
@@ -62,9 +64,9 @@ public class FilmeController {
             return new ResponseEntity<>("Filme não encontrado", HttpStatus.NOT_FOUND);
         
         filme.setTitle(pojoFilme.getTitle());
-        service.updateFilme(filme);
-        filme.setUsuario(pojoFilme.getUsuario());
+        filme.setGender(pojoFilme.getGender());
 
+        service.updateFilme(filme);
 
         return new ResponseEntity<>("Filme atualizado com sucesso", HttpStatus.OK);
     }

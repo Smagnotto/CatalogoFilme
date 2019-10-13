@@ -7,9 +7,18 @@ public class Filme {
 
     private String title;
     private String usuario;
+    private String gender;
 
     public String getTitle() {
         return title;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public void setTitle(String title) {

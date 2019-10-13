@@ -20,6 +20,9 @@ public class FilmeDomain {
     @Column(name="usuario", nullable = false, length = 50)
     private String usuario;
 
+    @Column(name="gender", nullable = false, length = 50)
+    private String gender;
+
     public long getId() {
         return id;
     }
@@ -42,5 +45,13 @@ public class FilmeDomain {
 
     public String getUsuario(String usuario) {
         return this.usuario;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getGender(String gender) {
+        return this.gender;
     }
 }
