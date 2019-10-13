@@ -43,7 +43,7 @@ public class FilmeDomain {
         this.usuario = usuario;
     }
 
-    public String getUsuario(String usuario) {
+    public String getUsuario() {
         return this.usuario;
     }
 
@@ -51,7 +51,7 @@ public class FilmeDomain {
         this.gender = gender;
     }
 
-    public String getGender(String gender) {
+    public String getGender() {
         return this.gender;
     }
 }
